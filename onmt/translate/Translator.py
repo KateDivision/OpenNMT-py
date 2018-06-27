@@ -26,6 +26,9 @@ def make_translator(opt, report_score=True, logger=None, out_file=None):
     fields, model, model_opt = \
         onmt.ModelConstructor.load_test_model(opt, dummy_opt.__dict__)
 
+    ## Show the model in use
+    ## logger.info(model)
+
     scorer = onmt.translate.GNMTGlobalScorer(opt.alpha,
                                              opt.beta,
                                              opt.coverage_penalty,
@@ -235,6 +238,7 @@ class Translator(object):
                       codecs.open(self.dump_beam, 'w', 'utf-8'))
         return all_scores
 
+    # @profile
     def translate_batch(self, batch, data):
         """
         Translate a batch of sentences.
