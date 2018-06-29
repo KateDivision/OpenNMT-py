@@ -112,4 +112,10 @@ ENV/
 runs/
 
 # Benchmark data
-/client/benchmarkdata/
+client/benchmarkdata/news.2016.en.shuffled*
+
+# Models
+available_models/transformer-ende-wmt-pyOnmt.tar.gz
+available_models/sentencepiece.model
+available_models/averaged-10-epoch.pt
+available_models/baseline-brnn2.s131_acc_62.71_ppl_7.74_e20.pt
