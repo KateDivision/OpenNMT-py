@@ -254,6 +254,7 @@ class ServerModel:
         """
         timer = Timer()
         print("\nRunning translation using %d" % self.model_id)
+        print(inputs)
 
         timer.start()
         if not self.loaded:
@@ -301,9 +302,9 @@ class ServerModel:
         self.reset_unload_timer()
         results = self.out_file.getvalue().split("\n")
         print("Results: ", len(results))
-        results = ['\n'.join([self.maybe_detokenize(_)
-                              for _ in results[subsegment[i]]
-                              if len(_) > 0])
+        results = ['\n'.join([self.maybe_detokenize(j).decode("utf-8")
+                              for j in results[subsegment[i]]
+                              if len(j) > 0])
                    for i in sorted(subsegment.keys())]
 
         avg_scores = [sum([s * l for s, l in zip(scores[sub], sslength[sub])])
@@ -396,6 +397,10 @@ class ServerModel:
 
         if self.tokenizer_opt["type"] == "sentencepiece":
             tok = self.tokenizer.EncodeAsPieces(sequence)
+            # added
+            # ------
+            tok = [i.decode("utf-8") for i in tok]
+            # ------
             tok = " ".join(tok)
         return tok
 

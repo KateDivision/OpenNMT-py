@@ -8,6 +8,7 @@
             "on_timeout": "to_cpu",
             "load": true,
             "opt": {
+		"batch_size": 6,
                 "gpu": 0,
                 "beam_size": 5
             },

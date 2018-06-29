@@ -110,3 +110,6 @@ ENV/
 
 # Tensorboard
 runs/
+
+# Benchmark data
+/client/benchmarkdata/
